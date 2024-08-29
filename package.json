@@ -1,0 +1,28 @@
+{
+  "name": "problem-scenario-for-full-stack-developer-position-at-apurba-technologies-ltd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "chai-http": "^5.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.6.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.8.3",
+    "chai": "^5.1.1",
+    "jasmine-core": "^5.2.0",
+    "mocha": "^10.7.3",
+    "supertest": "^7.0.0"
+  }
+}
