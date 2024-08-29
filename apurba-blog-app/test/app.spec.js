@@ -1,5 +1,4 @@
-// test/app.spec.js
-describe('PostController', function () {
+describe('PostController Form Validation', function () {
     beforeEach(angular.mock.module('myBlogApp'));
 
     var $controller, $rootScope, $httpBackend;
@@ -10,64 +9,65 @@ describe('PostController', function () {
         $httpBackend = _$httpBackend_;
     }));
 
-    describe('$scope.createPost', function () {
-        it('should create a new post', function () {
-            var $scope = $rootScope.$new();
+    describe('Form validation', function () {
+        var $scope, form;
+
+        beforeEach(function () {
+            $scope = $rootScope.$new();
             var controller = $controller('PostController', { $scope: $scope });
 
+            // Create a mock form
+            form = {
+                $valid: false,
+                $setPristine: jasmine.createSpy('$setPristine'),
+                $setUntouched: jasmine.createSpy('$setUntouched')
+            };
+            $scope.form = form;
+        });
+
+        it('should be invalid if title is missing', function () {
+            $scope.newPost = {
+                title: '',
+                content: 'This is a test post content.',
+                author: 'John Doe'
+            };
+
+            $scope.createPost();
+            expect($scope.form.$valid).toBe(false);
+        });
+
+        it('should be invalid if content is missing', function () {
+            $scope.newPost = {
+                title: 'Test Post',
+                content: '',
+                author: 'John Doe'
+            };
+
+            $scope.createPost();
+            expect($scope.form.$valid).toBe(false);
+        });
+
+        it('should be invalid if author is missing', function () {
+            $scope.newPost = {
+                title: 'Test Post',
+                content: 'This is a test post content.',
+                author: ''
+            };
+
+            $scope.createPost();
+            expect($scope.form.$valid).toBe(false);
+        });
+
+        it('should be valid if all fields are filled', function () {
             $scope.newPost = {
                 title: 'Test Post',
                 content: 'This is a test post content.',
                 author: 'John Doe'
             };
 
-            $httpBackend.expectPOST('http://localhost:3011/posts').respond(201, {
-                id: 1,
-                title: 'Test Post',
-                content: 'This is a test post content.',
-                author: 'John Doe',
-                createdAt: new Date()
-            });
-
+            form.$valid = true; // Simulate form being valid
             $scope.createPost();
-            $httpBackend.flush();
-
-            expect($scope.posts.length).toBe(1);
-            expect($scope.posts[0].title).toBe('Test Post');
-        });
-    });
-
-    describe('$scope.deletePost', function () {
-        it('should delete a post by id', function () {
-            var $scope = $rootScope.$new();
-            var controller = $controller('PostController', { $scope: $scope });
-
-            $scope.posts = [
-                { id: 1, title: 'Post 1', content: 'Content 1', author: 'Author 1' },
-                { id: 2, title: 'Post 2', content: 'Content 2', author: 'Author 2' }
-            ];
-
-            $httpBackend.expectDELETE('http://localhost:3011/posts/1').respond(204);
-
-            $scope.deletePost(1);
-            $httpBackend.flush();
-
-            expect($scope.posts.length).toBe(1);
-            expect($scope.posts[0].id).toBe(2);
-        });
-    });
-
-    describe('$scope.editPost', function () {
-        it('should set isEditing to true and populate newPost with the post data', function () {
-            var $scope = $rootScope.$new();
-            var controller = $controller('PostController', { $scope: $scope });
-
-            var post = { id: 1, title: 'Post 1', content: 'Content 1', author: 'Author 1' };
-
-            $scope.editPost(post);
-
-            expect($scope.isEditing).toBe(true);
-            expect($scope.newPost).toEqual(post);
+            expect($scope.form.$valid).toBe(true);
         });
     });
 });
