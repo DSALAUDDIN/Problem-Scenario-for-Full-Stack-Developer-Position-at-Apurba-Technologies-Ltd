@@ -73,9 +73,7 @@ This project is a full-stack application built using AngularJS for the frontend 
 
 ### Backend
 
-- `index.js`: Main application file.
-- `routes/`: Directory containing route definitions.
-- `models/`: Directory containing Mongoose models.
+- `app.cjs`: Main application file.
 - `test/`: Directory containing test files.
 
 ### Frontend
@@ -87,10 +85,95 @@ This project is a full-stack application built using AngularJS for the frontend 
 
 ## API Endpoints
 
-- `POST /posts`: Create a new post
-- `PUT /posts/:id`: Update an existing post
-- `DELETE /posts/:id`: Delete a post by ID
-- `GET /posts`: Fetch all posts
+### GET /posts
+- **Method**: GET
+- **URL**: `http://localhost:3011/posts`
+- **Description**: Fetch all posts.
+
+### GET /posts/:id
+- **Method**: GET
+- **URL**: `http://localhost:3011/posts/1`
+- **Description**: Fetch a specific post by ID. Replace `1` with the desired post ID.
+
+### POST /posts
+- **Method**: POST
+- **URL**: `http://localhost:3011/posts`
+- **Headers**: `Content-Type: application/json`
+- **Body** (raw JSON):
+    ```json
+    {
+      "title": "Sample Post",
+      "content": "This is a sample post content.",
+      "author": "John Doe"
+    }
+    ```
+- **Description**: Create a new post.
+
+### PUT /posts/:id
+- **Method**: PUT
+- **URL**: `http://localhost:3011/posts/1`
+- **Headers**: `Content-Type: application/json`
+- **Body** (raw JSON):
+    ```json
+    {
+      "title": "Updated Post",
+      "content": "This is the updated content.",
+      "author": "Jane Doe"
+    }
+    ```
+- **Description**: Update an existing post. Replace `1` with the desired post ID.
+
+### DELETE /posts/:id
+- **Method**: DELETE
+- **URL**: `http://localhost:3011/posts/1`
+- **Description**: Delete a post by ID. Replace `1` with the desired post ID.
+
+## Testing with Postman
+
+To test the API endpoints in Postman, you can use the following examples:
+
+### GET /posts
+- **Method**: GET
+- **URL**: `http://localhost:3011/posts`
+- **Description**: Fetch all posts.
+
+### GET /posts/:id
+- **Method**: GET
+- **URL**: `http://localhost:3011/posts/1`
+- **Description**: Fetch a specific post by ID. Replace `1` with the desired post ID.
+
+### POST /posts
+- **Method**: POST
+- **URL**: `http://localhost:3011/posts`
+- **Headers**: `Content-Type: application/json`
+- **Body** (raw JSON):
+    ```json
+    {
+      "title": "Sample Post",
+      "content": "This is a sample post content.",
+      "author": "John Doe"
+    }
+    ```
+- **Description**: Create a new post.
+
+### PUT /posts/:id
+- **Method**: PUT
+- **URL**: `http://localhost:3011/posts/1`
+- **Headers**: `Content-Type: application/json`
+- **Body** (raw JSON):
+    ```json
+    {
+      "title": "Updated Post",
+      "content": "This is the updated content.",
+      "author": "Jane Doe"
+    }
+    ```
+- **Description**: Update an existing post. Replace `1` with the desired post ID.
+
+### DELETE /posts/:id
+- **Method**: DELETE
+- **URL**: `http://localhost:3011/posts/1`
+- **Description**: Delete a post by ID. Replace `1` with the desired post ID.
 
 ## License
 This project is licensed under the ISC License.
