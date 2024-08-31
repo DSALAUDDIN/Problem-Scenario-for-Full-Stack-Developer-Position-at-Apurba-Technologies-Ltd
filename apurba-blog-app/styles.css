@@ -1,90 +1,99 @@
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    background-color: #f4f4f4;
+    padding: 0;
+    background-color: #f3f2ef;
     color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
 header {
+    background-color: #283e4a;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+.new-post-button {
+    display: block;
+    margin: 1rem auto;
+    padding: 0.5rem 1rem;
     background-color: #0073b1;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.new-post-button i {
+    margin-right: 0.5rem;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.post-form {
+    margin-bottom: 2rem;
+}
+
+.post-form h2 {
+    margin-bottom: 1rem;
+}
+
+.post-form div {
+    margin-bottom: 1rem;
+}
+
+.post-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.post-form input,
+.post-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.post-form button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.post-form button[type="submit"] {
+    background-color: #0073b1;
+    color: #fff;
+}
+
+.post-form button[type="button"] {
+    background-color: #dc3545;
+    color: #fff;
+    margin-left: 1rem;
+}
+
+.post-list .post-card {
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+}
+
+.post-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 24px;
-    color: #fff;
-}
-
-main {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
-
-.post-form {
-    margin-bottom: 20px;
-}
-
-.post-form label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.post-form input, .post-form textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.post-form button {
-    background-color: #0073b1;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.post-form button:hover {
-    background-color: #005582;
-}
-
-.post-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 20px;
-}
-
-.post-card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 .post-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    margin: 0;
+    color: #0073b1;
 }
 
 .post-author {
@@ -93,67 +102,34 @@ main {
 }
 
 .post-content {
-    line-height: 1.6;
-    margin-bottom: 10px;
+    margin: 1rem 0;
 }
 
-.post-date {
-    color: #666;
-}
-
-.post-actions {
+.post-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.post-action {
-    background-color: #0073b1;
-    color: #fff;
-    padding: 8px 12px;
+.post-date {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.post-actions button {
+    background: none;
     border: none;
-    border-radius: 5px;
+    color: #0073b1;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.post-action:hover {
-    background-color: #005582;
-}
-
-.new-post-button {
-    background-color: #0073b1;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 20px;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 80px;
-    right: 20px;
-    z-index: 1000;
-}
-
-.new-post-button i {
-    margin-right: 8px;
-}
-
-.new-post-button:hover {
-    background-color: #005582;
+    margin-left: 0.5rem;
 }
 
 footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
     text-align: center;
+    padding: 1rem;
+    background-color: #283e4a;
+    color: #fff;
     position: fixed;
-    bottom: 0;
     width: 100%;
+    bottom: 0;
 }

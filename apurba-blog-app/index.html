@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html ng-app="myBlogApp">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apurba Blog</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <script src="app.js"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
 </head>
 <body>
 <div ng-controller="PostController">
@@ -25,18 +27,18 @@
                 <form ng-submit="isEditing ? updatePost() : createPost()">
                     <div>
                         <label for="title">Title:</label>
-                        <input type="text" ng-model="newPost.title" required>
+                        <input type="text" id="title" ng-model="newPost.title" required>
                     </div>
                     <div>
                         <label for="content">Content:</label>
-                        <textarea ng-model="newPost.content" required></textarea>
+                        <textarea id="content" ng-model="newPost.content" required></textarea>
                     </div>
                     <div>
                         <label for="author">Author:</label>
-                        <input type="text" ng-model="newPost.author" required>
+                        <input type="text" id="author" ng-model="newPost.author" required>
                     </div>
                     <button type="submit">{{ isEditing ? 'Update' : 'Create' }}</button>
-                    <button ng-click="newPostFormVisible = false">Cancel</button>
+                    <button type="button" ng-click="newPostFormVisible = false">Cancel</button>
                 </form>
             </div>
 
@@ -63,7 +65,7 @@
     </main>
 
     <footer>
-        <p>© 2024 Apurba Blog. All rights reserved.</p>
+        <p>©2024 Apurba Blog. All rights reserved.</p>
     </footer>
 </div>
 </body>
