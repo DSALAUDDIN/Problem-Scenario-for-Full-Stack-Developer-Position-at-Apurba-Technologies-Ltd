@@ -2,14 +2,15 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f3f2ef;
+    background-color: #f4f4f4;
     color: #333;
+    overflow-y: scroll; /* Ensure the body is scrollable */
 }
 
 header {
-    background-color: #283e4a;
-    color: #fff;
-    padding: 1rem;
+    background-color: #0077b5;
+    color: white;
+    padding: 1rem 0;
     text-align: center;
 }
 
@@ -17,11 +18,12 @@ header {
     display: block;
     margin: 1rem auto;
     padding: 0.5rem 1rem;
-    background-color: #0073b1;
-    color: #fff;
+    background-color: #0077b5;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 .new-post-button i {
@@ -32,73 +34,84 @@ header {
     max-width: 800px;
     margin: 2rem auto;
     padding: 1rem;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
     border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Ensure the container is scrollable */
 }
 
 .post-form {
     margin-bottom: 2rem;
 }
 
-.post-form h2 {
+.form-group {
     margin-bottom: 1rem;
 }
 
-.post-form div {
-    margin-bottom: 1rem;
-}
-
-.post-form label {
+.form-group label {
     display: block;
     margin-bottom: 0.5rem;
 }
 
-.post-form input,
-.post-form textarea {
+.form-group input,
+.form-group textarea {
     width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.post-form button {
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.post-form button[type="submit"] {
-    background-color: #0073b1;
-    color: #fff;
+.btn-primary {
+    background-color: #0077b5;
+    color: white;
 }
 
-.post-form button[type="button"] {
-    background-color: #dc3545;
-    color: #fff;
-    margin-left: 1rem;
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
 }
 
-.post-list .post-card {
-    border-bottom: 1px solid #ccc;
-    padding: 1rem 0;
+.post-list {
+    margin-top: 2rem;
+}
+
+.post-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .post-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .post-title {
     margin: 0;
-    color: #0073b1;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
-.post-author {
-    font-style: italic;
-    color: #666;
+.post-meta {
+    margin: 0;
+    color: #777;
+    font-size: 0.9rem;
 }
 
 .post-content {
@@ -111,24 +124,26 @@ header {
     align-items: center;
 }
 
-.post-date {
-    font-size: 0.9rem;
-    color: #999;
+.post-actions {
+    display: flex;
+    gap: 0.5rem;
 }
 
-.post-actions button {
-    background: none;
-    border: none;
-    color: #0073b1;
-    cursor: pointer;
-    margin-left: 0.5rem;
+.btn-edit {
+    background-color: #ffc107;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
 }
 
 footer {
     text-align: center;
-    padding: 1rem;
-    background-color: #283e4a;
-    color: #fff;
+    padding: 0.5rem 0; /* Reduce padding to make the footer smaller */
+    background-color: #0077b5;
+    color: white;
     position: fixed;
     width: 100%;
     bottom: 0;
