@@ -53,6 +53,32 @@ This project is a full-stack application built using AngularJS for the frontend 
 
 2. Open `index.html` in your browser.
 
+## Docker Instructions
+
+### Backend
+
+1. Build the Docker image:
+    ```bash
+    docker build -t my-backend-image -f backend/backend.dockerfile .
+    ```
+
+2. Run the Docker container:
+    ```bash
+    docker run -p 3011:3011 my-backend-image
+    ```
+
+### Frontend
+
+1. Build the Docker image:
+    ```bash
+    docker build -t my-frontend-image -f frontend/frontend.dockerfile .
+    ```
+
+2. Run the Docker container:
+    ```bash
+    docker run -p 80:80 my-frontend-image
+    ```
+
 ## Running Tests
 
 ### Backend

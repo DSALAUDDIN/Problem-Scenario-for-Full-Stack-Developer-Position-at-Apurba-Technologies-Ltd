@@ -8,7 +8,7 @@ angular.module('myBlogApp', [])
 
         // Fetch posts on load
         $scope.getPosts = function() {
-            $http.get('http://localhost:8080/posts') // Updated API endpoint
+            $http.get('http://localhost:3011/posts')
                 .then(function(response) {
                     $scope.posts = response.data;
                 })
@@ -20,7 +20,7 @@ angular.module('myBlogApp', [])
         // Create a new post
         $scope.createPost = function() {
             if ($scope.newPost.title && $scope.newPost.content && $scope.newPost.author) {
-                $http.post('http://localhost:8080/posts', $scope.newPost) // Updated API endpoint
+                $http.post('http://localhost:3011/posts', $scope.newPost)
                     .then(function(response) {
                         $scope.posts.push(response.data);
                         $scope.newPost = {};
@@ -48,7 +48,7 @@ angular.module('myBlogApp', [])
                 $scope.editingPost.content = $scope.newPost.content;
                 $scope.editingPost.author = $scope.newPost.author;
 
-                $http.put('http://localhost:8080/posts/' + $scope.editingPost.id, $scope.editingPost) // Updated API endpoint
+                $http.put('http://localhost:3011/posts/' + $scope.editingPost.id, $scope.editingPost)
                     .then(function(response) {
                         const postIndex = $scope.posts.findIndex(p => p.id === response.data.id);
                         if (postIndex !== -1) {
@@ -67,7 +67,7 @@ angular.module('myBlogApp', [])
 
         // Delete a post
         $scope.deletePost = function(postId) {
-            $http.delete('http://localhost:8080/posts/' + postId) // Updated API endpoint
+            $http.delete('http://localhost:3011/posts/' + postId)
                 .then(function(response) {
                     $scope.posts = $scope.posts.filter(function(p) {
                         return p.id !== postId;

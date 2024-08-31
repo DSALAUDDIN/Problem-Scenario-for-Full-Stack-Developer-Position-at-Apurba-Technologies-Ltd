@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx http-server -p 3009",
+    "test": "npx karma start"
   },
   "repository": {
     "type": "git",
@@ -13,7 +14,8 @@
   "private": true,
   "dependencies": {
     "angular": "^1.8.3",
-    "angular-mocks": "^1.8.3"
+    "angular-mocks": "^1.8.3",
+    "http-server": "^14.0.0"
   },
   "devDependencies": {
     "jasmine-core": "^5.2.0",
