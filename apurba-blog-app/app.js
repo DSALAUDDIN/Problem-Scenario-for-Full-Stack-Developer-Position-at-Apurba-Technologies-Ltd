@@ -43,14 +43,14 @@ angular.module('myBlogApp', [])
 
         // Update an existing post
         $scope.updatePost = function() {
-            if ($scope.editingPost.id) {
+            if ($scope.editingPost._id) {
                 $scope.editingPost.title = $scope.newPost.title;
                 $scope.editingPost.content = $scope.newPost.content;
                 $scope.editingPost.author = $scope.newPost.author;
 
-                $http.put('http://localhost:3011/posts/' + $scope.editingPost.id, $scope.editingPost)
+                $http.put('http://localhost:3011/posts/' + $scope.editingPost._id, $scope.editingPost)
                     .then(function(response) {
-                        const postIndex = $scope.posts.findIndex(p => p.id === response.data.id);
+                        const postIndex = $scope.posts.findIndex(p => p._id === response.data._id);
                         if (postIndex !== -1) {
                             $scope.posts[postIndex] = response.data;
                         }
@@ -67,15 +67,19 @@ angular.module('myBlogApp', [])
 
         // Delete a post
         $scope.deletePost = function(postId) {
-            $http.delete('http://localhost:3011/posts/' + postId)
-                .then(function(response) {
-                    $scope.posts = $scope.posts.filter(function(p) {
-                        return p.id !== postId;
+            if (postId) {
+                $http.delete('http://localhost:3011/posts/' + postId)
+                    .then(function(response) {
+                        $scope.posts = $scope.posts.filter(function(p) {
+                            return p._id !== postId;
+                        });
+                    })
+                    .catch(function(error) {
+                        console.error("Error deleting post:", error);
                     });
-                })
-                .catch(function(error) {
-                    console.error("Error deleting post:", error);
-                });
+            } else {
+                console.error("Post ID is undefined");
+            }
         };
 
         $scope.getPosts(); // Fetch initial data

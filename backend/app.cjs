@@ -17,13 +17,12 @@ mongoose.connect(mongoUri)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err));
 
-// Mongoose schema and model
+// Define Mongoose Schema and Model
 const postSchema = new mongoose.Schema({
-    title: String,
-    content: String,
-    author: String,
-    createdAt: { type: Date, default: Date.now },
-    __v: { type: Number, default: 0 }
+    title: { type: String, required: true },
+    content: { type: String, required: true },
+    author: { type: String, required: true },
+    createdAt: { type: Date, default: Date.now }
 });
 
 const Post = mongoose.model('Post', postSchema);
@@ -33,8 +32,8 @@ app.get('/posts', async (req, res) => {
     try {
         const posts = await Post.find();
         res.json(posts);
-    } catch (err) {
-        res.status(500).json({ message: 'Error fetching posts' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching posts', error });
     }
 });
 
@@ -47,8 +46,8 @@ app.get('/posts/:id', async (req, res) => {
         } else {
             res.status(404).json({ message: 'Post not found' });
         }
-    } catch (err) {
-        res.status(500).json({ message: 'Error fetching post' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching post', error });
     }
 });
 
@@ -63,8 +62,8 @@ app.post('/posts', async (req, res) => {
         const newPost = new Post({ title, content, author });
         await newPost.save();
         res.status(201).json(newPost);
-    } catch (err) {
-        res.status(500).json({ message: 'Error creating post' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error creating post', error });
     }
 });
 
@@ -72,38 +71,29 @@ app.post('/posts', async (req, res) => {
 app.put('/posts/:id', async (req, res) => {
     const { title, content, author } = req.body;
 
-    if (!title || !content || !author) {
-        return res.status(400).json({ message: 'Title, content, and author are required' });
-    }
-
     try {
-        const updatedPost = await Post.findByIdAndUpdate(
-            req.params.id,
-            { title, content, author },
-            { new: true, runValidators: true } // Ensure the updated document is returned and validators are run
-        );
-        if (updatedPost) {
-            res.json(updatedPost);
+        const post = await Post.findByIdAndUpdate(req.params.id, { title, content, author }, { new: true });
+        if (post) {
+            res.json(post);
         } else {
             res.status(404).json({ message: 'Post not found' });
         }
-    } catch (err) {
-        console.error('Error updating post:', err); // Log the error for debugging
-        res.status(500).json({ message: 'Error updating post', error: err.message });
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating post', error });
     }
 });
 
 // DELETE /posts/:id - Delete a post
 app.delete('/posts/:id', async (req, res) => {
     try {
-        const deletedPost = await Post.findByIdAndDelete(req.params.id);
-        if (deletedPost) {
+        const post = await Post.findByIdAndDelete(req.params.id);
+        if (post) {
             res.status(204).send();
         } else {
             res.status(404).json({ message: 'Post not found' });
         }
-    } catch (err) {
-        res.status(500).json({ message: 'Error deleting post', error: err.message });
+    } catch (error) {
+        res.status(500).json({ message: 'Error deleting post', error });
     }
 });
 
@@ -114,10 +104,4 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
-}).on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
-        console.error(`Port ${port} is already in use. Please use a different port.`);
-    } else {
-        console.error('Server error:', err);
-    }
 });
