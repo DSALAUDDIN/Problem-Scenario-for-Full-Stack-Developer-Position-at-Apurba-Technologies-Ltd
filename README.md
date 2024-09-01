@@ -21,7 +21,7 @@ This project is a full-stack application built using AngularJS for the frontend 
 - Supertest (for testing)
 
 ## Prerequisites
-- Node.js (version 14 for backend, version 20 for frontend)
+- Node.js 
 - npm (Node Package Manager)
 - Docker
 - Docker Compose
